@@ -1,0 +1,8 @@
+# This ignores the .terraform directory.
+.terraform/
+
+# Ignores any file ending with .tfstate.
+*.tfstate
+
+# Ignores any file starting with .tfstate or containing .tfstate.
+*.tfstate*
