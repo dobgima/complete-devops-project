@@ -29,4 +29,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push thedevopsdude/complete-devops-project:${{ env.SHORT_SHA }}
+          docker push bradtech360/complete-devops-project:${{ env.SHORT_SHA }}
