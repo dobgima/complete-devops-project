@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: Checkout code (This downloads our repository code to the runner)
         uses: actions/Checkout@v4
-        -name: set SHORT_SHA (SHORT_SHA is the first 7 characters of the commit SHA)
+      - name: set SHORT_SHA (SHORT_SHA is the first 7 characters of the commit SHA)
         run : echo "SHORT_SHA=${GITHUB_SHA::7}" >> $ GITHUB_ENV
-        -name: login to DokerHub
+      - name: login to DokerHub
         runs: |
           echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login \
           -u "${{secrets.DOCKER_HUB_USERNAME}}" --password-stdin
