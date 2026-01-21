@@ -27,6 +27,6 @@ jobs:
         run: |
           docker build -t thedevopsdude/complete-devops-project:${{ env.SHORT_SHA }} .
 
-      - name: Push Docker Image
+      - name: Push Docker Imag
         run: |
           docker push thedevopsdude/complete-devops-project:${{ env.SHORT_SHA }}
