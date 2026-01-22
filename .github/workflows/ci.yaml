@@ -18,8 +18,8 @@ jobs:
       
       - name: Login to DockerHub  # Correct spelling
         run: |  # "run:" not "runs:"
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login \
-            -u "${{ secrets.DOCKERHUB_USERNAME }}" \
+          echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login \
+            -u "${{ secrets.DOCKER_HUB_USERNAME }}" \
             --password-stdin
       
       - name: Build Docker image
