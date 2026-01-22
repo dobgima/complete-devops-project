@@ -1,24 +1,31 @@
-name: My complete Devops CI Pipeline
+name: My Complete DevOps CI Pipeline
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  build_and_Push:
+  build_and_push:  # Lowercase "push" (convention)
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code (This downloads our repository code to the runner)
-        uses: actions/Checkout@v4
-      - name: set SHORT_SHA (SHORT_SHA is the first 7 characters of the commit SHA)
-        run : echo "SHORT_SHA=${GITHUB_SHA::7}" >> $ GITHUB_ENV
-      - name: login to DokerHub
-        runs: |
-          echo "${{secrets.DOCKER_HUB_PASSWORD}}" | docker login \
-          -u "${{secrets.DOCKER_HUB_USERNAME}}" --password-stdin
-      - name: Build image
+      - name: Checkout code
+        uses: actions/checkout@v4  # Lowercase "checkout"
+      
+      - name: Set SHORT_SHA
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV  # No space before colon, no space in $GITHUB_ENV
+      
+      - name: Login to DockerHub  # Correct spelling
+        run: |  # "run:" not "runs:"
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login \
+            -u "${{ secrets.DOCKERHUB_USERNAME }}" \
+            --password-stdin
+      
+      - name: Build Docker image
         run: |
-          docker build -t bradtech360/complete-devops-project:${{env.SHORT_SHA}} .
-      - name: Push image to DockerHub
+          docker build -t bradtech360/complete-devops-project:${{ env.SHORT_SHA }} .
+      
+      - name: Push Docker image
         run: |
-          docker push bradtech360/complete-devops-project:${{env.SHORT_SHA}}
+          docker push bradtech360/complete-devops-project:${{ env.SHORT_SHA }}
