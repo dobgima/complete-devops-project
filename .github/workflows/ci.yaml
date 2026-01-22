@@ -26,6 +26,6 @@ jobs:
         run: |
           docker build -t bradtech360/complete-devops-project:${{ env.SHORT_SHA }} .
       
-      - name: Push Docker image
+      - name: Push Docker imag
         run: |
           docker push bradtech360/complete-devops-project:${{ env.SHORT_SHA }}
