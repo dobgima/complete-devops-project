@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: bradtech360/complete-devops-project
-  tag: "b0636b9"        # ✅ DO NOT use latest in real DevOps
+  tag: "fa4f255"
   pullPolicy: IfNotPresent
 
 serviceAccount:
