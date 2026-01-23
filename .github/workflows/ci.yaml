@@ -29,3 +29,15 @@ jobs:
       - name: Push Docker imag
         run: |
           docker push bradtech360/complete-devops-project:${{ env.SHORT_SHA }}
+
+      - name: Configure Git Authorship
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Update Helm Chart with new image tag
+        run: |
+          sed -i "s/tag: .*/tag: \"${{ env.SHORT_SHA }}\"/" complete-devops-project-time-printer/values.yaml
+          git add complete-devops-project-time-printer/values.yaml
+          git commit -m "Update image tag to ${{ env.SHORT_SHA }}"
+          git push

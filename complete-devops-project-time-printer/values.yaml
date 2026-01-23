@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: bradtech360/complete-devops-project
+  tag: "b0636b9"        # ✅ DO NOT use latest in real DevOps
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: false        # ✅ correct way to disable
+  automount: true
+  annotations: {}
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 8080           # ✅ matches your app
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 8080         # ✅ FIXED
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 8080         # ✅ FIXED
